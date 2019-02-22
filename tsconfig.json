@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "build/dist",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "target": "es5",
+    "lib": ["es7", "dom"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "downlevelIteration": true,
+    "types": [
+      "cypress"
+    ],
+  },
+  "include": [
+    "cypress/*/*.ts"
+  ]
+}
