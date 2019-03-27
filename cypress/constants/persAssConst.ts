@@ -5,6 +5,5 @@ export const descriptionInput = `${panel} input[name="assignmentDescription"]`;
 export const webRoleInput = `${panel} input[name="webRoleId"]`;
 export const tradepointInput = `${panel} input[name="tradePointId"]`;
 export const submit = `${panel} button[type="submit"]`;
-export const successNotification = 'div[class*="notification_title"]';
 export const spanErrorSelector = (sel: string) => `${sel} ~ div[class*="input_description"] span`;
 export const toHaveText = (text: string) => (el: any) => expect(el).to.have.text(text);
