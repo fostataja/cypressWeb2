@@ -1,6 +1,3 @@
-import {
-   headerTitle
-} from "../constants/elementSiteConst";
 
 describe('Логин', () => {
 beforeEach(() => {
@@ -11,7 +8,7 @@ it('Логин позитивный', () => {
  cy.get('input[name="email"]').type('u0ba2@mail.ru');
  cy.get('input[name="password"]').type('testPass');
  cy.get('span[class*="button_text"]').contains('Войти').click();
- cy.get(headerTitle).contains('Главная');
+ cy.title().should('eq','Главная');
 
 });
 it('Логин без данных', () => {

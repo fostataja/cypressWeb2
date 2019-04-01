@@ -1,6 +1,5 @@
 import {
-   getInputName, getButtonText, createOrgButton
-} from "../constants/elementSiteConst";
+   getInputName, randomName, getButtonText, randomNameTwo, triTochkiTwo, elementMenu} from "../constants/elementSiteConst";
 
 describe('Создание Оргструктуры', () => {
 beforeEach(() => {
@@ -9,11 +8,24 @@ beforeEach(() => {
 });
 
 it('CRUD оргструктуры', () => {
-  cy.get(createOrgButton).first().invoke('show').click();
- cy.get(createOrgButton).first().find(createOrgButton).first().invoke('show').click();
- cy.get('div[class*="dropdown-list_root"] > div:nth-child(2)').click();
- cy.get(getButtonText).contains('Создать маршрут').click();
- cy.get(getInputName('routeName')).type('Route Title');
+   cy.get(triTochkiTwo).click();
+   cy.get(elementMenu).contains("Cкрыть сотрудников").click();
+   cy.get('div[class *= "rstcustom__node"]').first().find('button[class *="buttonIconWrap_root"]').eq(2).click({ force: true });
+ cy.get(getInputName('orgStructFolderName')).type(randomName);
+ cy.get(getButtonText).contains('Создать').click();
+ cy.get(getButtonText).contains('Сохранить').click();
+cy.get('span[class *= "orgPageStruct_plateText"]').contains(randomName).parents('.rstcustom__node').find('button[class *="buttonIconWrap_root"]').eq(1).click({ force: true });
+ cy.get(getInputName('orgStructFolderName')).clear().type(randomNameTwo);
+ cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Сохранить').click();
+ cy.get(getButtonText).contains('Сохранить').click();
+ cy.get('span[class *= "orgPageStruct_plateText"]').contains(randomNameTwo).parents('.rstcustom__node').find('button[class *="buttonIconWrap_root"]').eq(3).click({ force: true });
+ cy.get(getButtonText).contains('Да').click();
+ cy.get(getButtonText).contains('Сохранить').click();
+ cy.get('.rstcustom__node').find('span[class *= "orgPageStruct_plateText"]').contains(randomNameTwo).should('not.exist');
+
+
+
+
 
 });
 

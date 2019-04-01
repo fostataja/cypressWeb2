@@ -1,6 +1,9 @@
 import { 
-  createAssignmnetButton, titleInput, tradepointInput, submit, successNotification, descriptionInput, webRoleInput, spanErrorSelector
+  createAssignmnetButton, titleInput, tradepointInput, submit, descriptionInput, webRoleInput, spanErrorSelector
 } from "../constants/persAssConst";
+import {
+  successNotification, secondInList
+} from "../constants/elementSiteConst";
 
 describe('Создание поручений', () => {
   beforeEach(() => {
@@ -11,27 +14,22 @@ describe('Создание поручений', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(titleInput).type('Cypress Assignment');
     cy.get(tradepointInput).click();
-    cy.get('div[class*="dropdown-list_root"] > div:nth-child(2)').click();
-    cy.get('div[class*="left-menu_root"]').click();
+    cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('to.be.visible');
-    cy.get(successNotification).should(($div) => expect($div).contains('Поручение успешно созданно'));
+    cy.get(successNotification).contains('Поручение успешно созданно');
   });
 
   it('Создать поручение со всеми полями', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(titleInput).type('Cypress Assignment');
     cy.get(descriptionInput).type('Cypress Description');
-    cy.get(tradepointInput).click();
-    cy.get('div[class*="dropdown-list_root"] > div:nth-child(2)').click();
-    cy.get('div[class*="left-menu_root"]').click();
     cy.get(webRoleInput).click();
-    cy.get('div[class*="dropdown-list_root"] > div:nth-child(2)').click();
-    cy.get('div[class*="left-menu_root"]').click();
+    cy.get(secondInList).click();
+    cy.get(tradepointInput).click();
+    cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('to.be.visible');
-    cy.get(successNotification).should(($div) => expect($div).contains('Поручение успешно созданно'));
-  });
+    cy.get(successNotification).contains('Поручение успешно созданно');
+    });
   it('Поручение без заполнения полей', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(submit).click();

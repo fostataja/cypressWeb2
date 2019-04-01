@@ -1,4 +1,4 @@
-export const panel = 'div[class*="assignment-panel_root"]';
+export const panel = 'div[class*="assignmentPanel_root"]';
 export const createAssignmnetButton = 'div[class*=header_rightSection] > div[title="Создать поручение"]';
 export const titleInput = `${panel} input[name="assignmentTitle"]`;
 export const descriptionInput = `${panel} input[name="assignmentDescription"]`;
