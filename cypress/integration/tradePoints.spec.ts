@@ -1,5 +1,5 @@
 import {
-  triTochki, getButtonText, getInputName, secondInList, successNotification, randomName, gridFilter, filterColumn, chekAll, search, checkValue, editTt, closeNotofic
+  triTochki, getButtonText, getInputName, secondInList, successNotification, randomName, gridFilter, filterColumn, chekAll, search, checkValue, buttonIconWrap, closeNotofic
 } from "../constants/elementSiteConst";
 
 
@@ -25,14 +25,14 @@ describe('CRUD Торговых Точек', () => {
     cy.get(chekAll).click();
     cy.get(search).type(randomName);
     cy.get(checkValue).eq(1).click();
-    cy.get(editTt).eq(1).click();
+    cy.get(buttonIconWrap).eq(1).click();
     cy.get(getInputName('streetAddress')).type('Test street address');
     cy.get(getButtonText).contains('Сохранить').click();
     cy.get(successNotification).contains('Сохранено успешно');
     cy.get(closeNotofic).click();
 
 
-    cy.get(editTt).eq(1).click();
+    cy.get(buttonIconWrap).eq(1).click();
     cy.get(getButtonText).contains('Удалить').click();
     cy.get(getButtonText).contains('Да').click();
     cy.get(successNotification).contains('Удалено успешно');

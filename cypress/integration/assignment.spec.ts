@@ -2,11 +2,12 @@ import {
   createAssignmnetButton, titleInput, tradepointInput, submit, descriptionInput, webRoleInput, spanErrorSelector
 } from "../constants/persAssConst";
 import {
-  successNotification, secondInList
+  successNotification, secondInList, closeNotofic
 } from "../constants/elementSiteConst";
 
 describe('Создание поручений', () => {
   beforeEach(() => {
+    // before(() => {
     cy.login2();
   });
 
@@ -17,6 +18,7 @@ describe('Создание поручений', () => {
     cy.get(secondInList).click();
     cy.get(submit).click();
     cy.get(successNotification).contains('Поручение успешно созданно');
+    cy.get(closeNotofic).click();
   });
 
   it('Создать поручение со всеми полями', () => {
@@ -29,6 +31,7 @@ describe('Создание поручений', () => {
     cy.get(secondInList).click();
     cy.get(submit).click();
     cy.get(successNotification).contains('Поручение успешно созданно');
+    cy.get(closeNotofic).click();
     });
   it('Поручение без заполнения полей', () => {
     cy.get(createAssignmnetButton).click();

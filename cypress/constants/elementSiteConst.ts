@@ -12,23 +12,24 @@ export const secondInList = `div[class *="dropdownList_root"] > div:nth-child(2)
 export const successNotification = 'div[class*="notification_title"]';
 export const closeNotofic = 'button[class *="Toastify__close-button"]';
 export const elementMenu = `button[class *="menu_menuItem"]`
+export const buttonIconWrap = `button[class *="buttonIconWrap_root"]`
+
 
 
 
 export const randomName = Date(); 
-export const randomNameTwo = Date(); 
+export const randomNameTwo = 'new123'; 
 
 
 
 
 // Оргструктура:
-// export const elementOrg  = `span[class*="org-page-struct_plateText__392vS"]`
-export const elementOrg  = `div[class*="rstcustom__row"]`
+export const elementOrg  = `div[class *= "rstcustom__node"]`
+export const orgPlateText = 'span[class *= "orgPageStruct_plateText"]'
 export const createOrgButton  = `div[class*="rstcustom__toolbarButton"]`
 
 // Торговые Точки
 export const addNewTT = `button[class *="gridMenu_icon"]`
-export const editTt = `button[class *="buttonIconWrap_root"]`
 
 // export const inputName = `button[class *="gridMenu_icon"]`
 
