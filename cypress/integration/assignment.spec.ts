@@ -9,6 +9,8 @@ describe('Создание поручений', () => {
   beforeEach(() => {
     // before(() => {
     cy.login2();
+    cy.visit("");
+
   });
 
   it('Создать поручение', () => {
@@ -17,8 +19,9 @@ describe('Создание поручений', () => {
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).contains('Поручение успешно созданно');
-    cy.get(closeNotofic).click();
+    cy.get(successNotification).should('contain','Поручение успешно созданно');
+
+    // cy.get(closeNotofic).click();
   });
 
   it('Создать поручение со всеми полями', () => {
@@ -30,14 +33,14 @@ describe('Создание поручений', () => {
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).contains('Поручение успешно созданно');
+    cy.get(successNotification).should('contain','Поручение успешно созданно');
     cy.get(closeNotofic).click();
     });
   it('Поручение без заполнения полей', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(submit).click();
-    cy.get(spanErrorSelector(titleInput)).contains('Поле обязательно для заполнения');
-    cy.get(spanErrorSelector(tradepointInput)).contains('Поле обязательно для заполнения');
+    cy.get(spanErrorSelector(titleInput)).should('contain','Поле обязательно для заполнения');
+    cy.get(spanErrorSelector(tradepointInput)).should('contain','Поле обязательно для заполнения');
 
   });
 

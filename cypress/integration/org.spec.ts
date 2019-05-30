@@ -1,5 +1,6 @@
 import {
-   getInputName, randomName, getButtonText, triTochkiTwo, elementMenu, randomNameTwo, orgPlateText, elementOrg, buttonIconWrap} from "../constants/elementSiteConst";
+   getInputName, randomName, getButtonText, triTochkiTwo, elementMenu, randomNameTwo, orgPlateText, elementOrg, buttonIconWrap
+} from "../constants/elementSiteConst";
 
 describe('Кейсы: Оргструктура', () => {
 beforeEach(() => {
@@ -22,7 +23,7 @@ cy.get(orgPlateText).contains(randomName).parents(elementOrg).find(buttonIconWra
  cy.get(orgPlateText).contains(randomName + randomNameTwo).parents(elementOrg).find(buttonIconWrap).eq(3).click({ force: true });
  cy.get(getButtonText).contains('Да').click();
  cy.get(getButtonText).contains('Сохранить').click();
- expect(orgPlateText).not.contains(randomName + randomNameTwo);
+ cy.get(orgPlateText).should('not.contain', randomName + randomNameTwo);
 
 //  cy.get(elementOrg).find(orgPlateText).contains(randomName + randomNameTwo).should('not.exist');
 

@@ -1,10 +1,9 @@
 export const inputRight  = 'div[class*="input_rightSide"]'; 
-export const getDialogActions  = `div[class*="dialog_actions"]`; 
 export const inputRoot  = 'div[class*="input_root"]'; 
 export const getInputName = (inputName: string) => `input[name="${inputName}"]`;
 export const getButtonText  = `span[class*="button_text"]`; 
 export const routesItemName  = `div[class*="routesItem_name"]`;
-// export const headerTitle = `div[class*="header_title"]` - лучше использовать     cy.title().should('eq','Действия: маршруты');
+// export const headerTitle = `div[class*="header_title"]` - лучше использовать     cy.title().should('eq','Действия: управление анкетами');
 export const triTochki = `button[class *="gridMenu_icon"]`
 export const triTochkiTwo = `button[class *="menu_icon"]`
 export const getDropdownList = `div[class *="dropdownList_root"]`
@@ -13,6 +12,20 @@ export const successNotification = 'div[class*="notification_title"]';
 export const closeNotofic = 'button[class *="Toastify__close-button"]';
 export const elementMenu = `button[class *="menu_menuItem"]`
 export const buttonIconWrap = `button[class *="buttonIconWrap_root"]`
+export const getDropdownListName = `button[class *="dropdownList_name"]`
+export const input_description = `div[class *="input_description"]`
+export const input_clearButton = `div[class *="input_clearButton"]`
+// Таблица:
+export const body_viewport ='div[class *= "ag-body-viewport ag-layout-normal ag-row-animation"]'
+// Даилоговые окна
+export const dialog_actions  = `div[class*="dialog_actions"]`; 
+// Работа с Панельками (чипсы)
+export const chip_title = 'div[class *= "chip_title"]';
+
+
+
+
+
 
 
 

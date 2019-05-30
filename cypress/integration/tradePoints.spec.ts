@@ -17,7 +17,7 @@ describe('CRUD Торговых Точек', () => {
     cy.get(getInputName('channelSaleId')).click();
     cy.get(secondInList).click();
     cy.get(getButtonText).contains('Сохранить').click();
-    cy.get(successNotification).contains('Создано успешно');
+    cy.get(successNotification).should('contain','Создано успешно');
     cy.get(closeNotofic).click();
  
     cy.get(gridFilter).first().click();
@@ -28,14 +28,16 @@ describe('CRUD Торговых Точек', () => {
     cy.get(buttonIconWrap).eq(1).click();
     cy.get(getInputName('streetAddress')).type('Test street address');
     cy.get(getButtonText).contains('Сохранить').click();
-    cy.get(successNotification).contains('Сохранено успешно');
+    cy.get(successNotification).should('contain','Сохранено успешно');
     cy.get(closeNotofic).click();
 
 
     cy.get(buttonIconWrap).eq(1).click();
     cy.get(getButtonText).contains('Удалить').click();
     cy.get(getButtonText).contains('Да').click();
-    cy.get(successNotification).contains('Удалено успешно');
+    cy.get(successNotification).should('contain','Удалено успешно');
+    cy.get(closeNotofic).click();
+
 
   // it('Редактировать Торговую Точку', () => {
   //   cy.get(gridFilter).first().click();

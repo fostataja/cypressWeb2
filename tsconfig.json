@@ -28,6 +28,6 @@
     ],
   },
   "include": [
-    "cypress/*/*.ts"
+    "cypress/*/*.ts", "cypress/support/index.js"
   ]
 }

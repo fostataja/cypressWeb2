@@ -1,5 +1,10 @@
 import {
-     inputRight, getInputName, getButtonText, getDialogActions, routesItemName, secondInList 
+     inputRight, 
+     getInputName, 
+     getButtonText, 
+     dialog_actions, 
+     routesItemName, 
+     secondInList 
 } from "../constants/elementSiteConst";
 
 describe('Создание маршрута', () => {
@@ -13,14 +18,14 @@ describe('Создание маршрута', () => {
     cy.get(secondInList).click();
     cy.get(getButtonText).contains('Создать маршрут').click();
     cy.get(getInputName('routeName')).type('Route Title');
-    cy.get(getDialogActions).find(getButtonText).contains('Создать').click();
+    cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
     cy.get(routesItemName).contains('Route Title').click();
     cy.get(getInputName('routeName')).type('2');
-    cy.get(getDialogActions).find(getButtonText).contains('Сохранить').click();
+    cy.get(dialog_actions).find(getButtonText).contains('Сохранить').click();
     cy.get(routesItemName).contains('Route Title2').click();
-    cy.get(getDialogActions).find(getButtonText).contains('Удалить').click();
+    cy.get(dialog_actions).find(getButtonText).contains('Удалить').click();
     cy.get(getButtonText).contains('Да').click();
-    cy.title().should('eq','Действия: маршруты');
+    cy.get('div[class*="routesList_emptyText"]').should('be.visible');
   });
 
-  });
+});
