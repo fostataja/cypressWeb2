@@ -4,7 +4,8 @@ import {
      getButtonText, 
      dialog_actions, 
      routesItemName, 
-     secondInList 
+     getDropdownListName,
+     randomName
 } from "../constants/elementSiteConst";
 
 describe('Создание маршрута', () => {
@@ -15,15 +16,15 @@ describe('Создание маршрута', () => {
 
   it('CRUD маршрута', () => {
     cy.get(inputRight).click();
-    cy.get(secondInList).click();
+    cy.get(getDropdownListName).contains('Autotest Web').click();
     cy.get(getButtonText).contains('Создать маршрут').click();
     cy.get(getInputName('routeName')).type('Route Title');
     cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
     cy.get(routesItemName).contains('Route Title').click();
-    cy.get(getInputName('routeName')).type('2');
+    cy.get(getInputName('routeName')).type(randomName);
     cy.get(dialog_actions).find(getButtonText).contains('Сохранить').click();
-    cy.get(routesItemName).contains('Route Title2').click();
-    cy.get(dialog_actions).find(getButtonText).contains('Удалить').click();
+    cy.get(routesItemName).contains('Route Title'+randomName).click();
+    cy.get(dialog_actions).find(getButtonText).contains('Удалить').should('be.visible').click();
     cy.get(getButtonText).contains('Да').click();
     cy.get('div[class*="routesList_emptyText"]').should('be.visible');
   });

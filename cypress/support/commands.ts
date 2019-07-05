@@ -10,10 +10,18 @@ Cypress.Commands.add('login', () => {
   cy.get('button[type="submit"]').click();
 });
 
+// Cypress.Commands.add('login2', () => {
+//   indexedDB.deleteDatabase(userGuidU0);
+
+//   cy
+//   .request('POST', '/webserver/user/auth', {"userName":u0Login,"password":u0Pswrd});
+//   cy.visit('');
+// });
+
 Cypress.Commands.add('login2', () => {
   indexedDB.deleteDatabase(userGuidU0);
 
   cy
-  .request('POST', '/webserver/user/auth', {"userName":u0Login,"password":u0Pswrd});
+  .request('POST', 'dotnet/UserAccount/Login', {"login":u0Login,"password":u0Pswrd});
   cy.visit('');
 });

@@ -21,6 +21,10 @@ export const body_viewport ='div[class *= "ag-body-viewport ag-layout-normal ag-
 export const dialog_actions  = `div[class*="dialog_actions"]`; 
 // Работа с Панельками (чипсы)
 export const chip_title = 'div[class *= "chip_title"]';
+// Рек ответы форматов вопросов
+export const switcherItem = `button[class *="switcher_item"]`
+
+
 
 
 
@@ -31,7 +35,7 @@ export const chip_title = 'div[class *= "chip_title"]';
 
 
 export const randomName = Date(); 
-export const randomNameTwo = 'new123'; 
+export const randomNameTwo = 'new_123'; 
 
 
 

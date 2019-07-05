@@ -32,11 +32,11 @@ describe('CRUD Торговых Точек', () => {
     cy.get(closeNotofic).click();
 
 
-    cy.get(buttonIconWrap).eq(1).click();
+    cy.get(buttonIconWrap).eq(1).click().wait(500);;
     cy.get(getButtonText).contains('Удалить').click();
     cy.get(getButtonText).contains('Да').click();
     cy.get(successNotification).should('contain','Удалено успешно');
-    cy.get(closeNotofic).click();
+    cy.get(successNotification).contains('Удалено успешно').click();
 
 
   // it('Редактировать Торговую Точку', () => {

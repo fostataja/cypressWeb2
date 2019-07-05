@@ -37,7 +37,7 @@ describe('Создание поручений', () => {
     cy.get(closeNotofic).click();
     });
   it('Поручение без заполнения полей', () => {
-    cy.get(createAssignmnetButton).click();
+    cy.get(createAssignmnetButton).click().wait(200);;
     cy.get(submit).click();
     cy.get(spanErrorSelector(titleInput)).should('contain','Поле обязательно для заполнения');
     cy.get(spanErrorSelector(tradepointInput)).should('contain','Поле обязательно для заполнения');
