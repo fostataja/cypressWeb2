@@ -56,7 +56,7 @@ describe('CRUD Вопросов', () => {
 
   });
   it('Удалить вопрос', () => {
-    cy.get(buttonIconWrap).first().click();
+    cy.get(buttonIconWrap).eq(1).click();
     cy.get(dialog_actions).find(getButtonText).contains('Удалить').click();
     cy.get(dialog_actions).find(getButtonText).contains('Да').click();
     cy.get(successNotification).should('contain','Удалено успешно');
@@ -67,13 +67,13 @@ describe('CRUD Вопросов', () => {
   it('Создать вопрос  со всеми полями', () => {
     cy.get(getButtonText).contains('Создать Вопрос').click();
     cy.get(getInputName('questionName')).type(randomName);
-    cy.get(getInputName('date')).click();
+    cy.get(getInputName('date')).click({ force: true });
     cy.get(getButtonText).contains('Применить').click();
     cy.get(getInputName('questCategoryId')).click();
     cy.get(secondInList).click().wait(200);
     cy.get(getInputName('productCategory')).type('Some product category');
     cy.get(getInputName('brand')).type('Some brand');
-    cy.get(getInputName('activityFreq')).click();
+    cy.get(getInputName('activityFreq')).click({ force: true });
     cy.get(secondInList).click().wait(200);
     cy.get(switcherItem).contains('Да').click();
     cy.get('#photoReport').click({ force: true });

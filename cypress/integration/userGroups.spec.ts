@@ -20,7 +20,9 @@ beforeEach(() => {
  cy.login2();
  cy.visit("settings/userGroups");
 });
-
+beforeEach(() => {
+  Cypress.Cookies.preserveOnce('UserId.Token')
+});
 it('Создание группы пользователей', () => {
   cy.get(getButtonText).contains('Создать').click();
   cy.get(getInputName('groupName')).type(randomName);
@@ -40,7 +42,7 @@ it('Редактирование группы пользователей', () =>
  cy.get(filterColumn).eq(3).click();
  cy.get(search).first().type(randomName).wait(1000);
 
- cy.get(body_viewport).contains(randomName).parents(body_viewport).find(buttonIconWrap).eq(0).click();
+ cy.get(body_viewport).contains(randomName).parents(body_viewport).find(buttonIconWrap).eq(0).click({ force: true });
 
  cy.get(getInputName('groupName')).type(randomNameTwo);
 //  cy.get(getInputName('roleId')).click();

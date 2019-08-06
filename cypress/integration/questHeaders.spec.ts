@@ -47,7 +47,7 @@ describe('CRUD Анкет', () => {
   it('Создать анкету со всеми полями', () => {
     cy.get(getButtonText).contains('Создать').click();
     cy.get(getInputName('questionnaireName')).type(randomName);
-    cy.get(getInputName('typeId')).click()
+    cy.get(getInputName('typeId')).click({ force: true });
     cy.get(secondInList).click().wait(200);
     cy.get('#tasks').click({ force: true });
     cy.get('#reporting').click({ force: true });
@@ -56,7 +56,7 @@ describe('CRUD Анкет', () => {
     cy.get(secondInList).click().wait(200);
     cy.get(getInputName('manufacturerId')).click()
     cy.get(secondInList).eq(1).click().wait(200);
-    cy.get(getInputName('questFilter')).click()
+    cy.get(getInputName('questFilter')).click({ force: true });
     cy.get(secondInList).click().wait(200);
     cy.get('#loadPreviousAnswer').click({ force: true });
     cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
@@ -73,7 +73,7 @@ describe('CRUD Анкет', () => {
     cy.get('#reporting').invoke('attr', 'aria-checked').should('eq','true');
     cy.get('#results').invoke('attr', 'aria-checked').should('eq','true');
     cy.get('div[class *= "dropdownMultiple_chipList"]').find(chip_title).invoke('attr', 'title').should('eq','Неплановый визит');
-    cy.get(getInputName('manufacturerId')).invoke('attr', 'value').should('eq','Белый медведь');
+    cy.get(getInputName('manufacturerId')).invoke('attr', 'value').should('eq','0Белый медведь');
     cy.get(getInputName('questFilter')).invoke('attr', 'value').should('eq','Только обязательные');
     cy.get('#loadPreviousAnswer').invoke('attr', 'aria-checked').should('eq','true');
     cy.get(dialog_actions).find(getButtonText).contains('Отмена').click();

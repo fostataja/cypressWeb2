@@ -12,6 +12,9 @@ describe('Создание поручений', () => {
     cy.visit("");
 
   });
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('UserId.Token')
+  });
 
   it('Создать поручение', () => {
     cy.get(createAssignmnetButton).click();
@@ -28,7 +31,7 @@ describe('Создание поручений', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(titleInput).type('Cypress Assignment');
     cy.get(descriptionInput).type('Cypress Description');
-    cy.get(webRoleInput).click();
+    cy.get(webRoleInput).click({ force: true });
     cy.get(secondInList).click();
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
