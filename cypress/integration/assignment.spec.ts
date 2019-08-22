@@ -22,7 +22,7 @@ describe('Создание поручений', () => {
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('contain','Поручение успешно созданно');
+    cy.get(successNotification).should('contain','Поручение успешно создано');
 
     // cy.get(closeNotofic).click();
   });
@@ -36,7 +36,7 @@ describe('Создание поручений', () => {
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('contain','Поручение успешно созданно');
+    cy.get(successNotification).should('contain','Поручение успешно создано');
     cy.get(closeNotofic).click();
     });
   it('Поручение без заполнения полей', () => {

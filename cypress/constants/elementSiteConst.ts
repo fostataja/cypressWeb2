@@ -17,6 +17,8 @@ export const input_description = `div[class *="input_description"]`
 export const input_clearButton = `div[class *="input_clearButton"]`
 // Таблица:
 export const body_viewport ='div[class *= "ag-body-viewport ag-layout-normal ag-row-animation"]'
+// Loader
+export const MuiLinearProgress ='div[class *= "MuiLinearProgress-bar"]'
 // Даилоговые окна
 export const dialog_actions  = `div[class*="dialog_actions"]`; 
 // Работа с Панельками (чипсы)

@@ -38,16 +38,18 @@ describe('CRUD Вопросов', () => {
   it('Создать вопрос', () => {
     cy.title().should('eq','Действия: управление анкетами');
     cy.get(chip_title).contains('Autotests QH').first().click()
-    cy.get(getButtonText).contains('Показать вопросы').click();
+    cy.get(getButtonText).contains('Показать вопросы').click().wait(400);
     cy.get(getButtonText).contains('Создать Вопрос').click();
     cy.get(getInputName('questionName')).type(randomName);
+    cy.get(getInputName('questCategoryId')).click();
+    cy.get(secondInList).click().wait(200);
     cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
     cy.get(successNotification).should('contain','Создано успешно')
     cy.get(successNotification).contains('Создано успешно').click();
 
   });
   it('Редактировать вопрос', () => {
-    cy.get(buttonIconWrap).first().click();
+    cy.get(buttonIconWrap).eq(1).click();
     cy.get(getInputName('questCategoryId')).click();
     cy.get(secondInList).click().wait(200);
     cy.get(dialog_actions).find(getButtonText).contains('Сохранить').click();
@@ -90,6 +92,13 @@ describe('CRUD Вопросов', () => {
     cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
     cy.get(successNotification).should('contain','Создано успешно')
     cy.get(successNotification).contains('Создано успешно').click();
+
+  });
+  
+  it('Создать вопрос БЕЗ обязательных полей', () => {
+    cy.get(getButtonText).contains('Создать Вопрос').click();
+    cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
+    cy.get('div[class *= "input_description"]').should('contain','Поле обязательно для заполнения');
 
   });
   });

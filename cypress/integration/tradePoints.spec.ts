@@ -1,5 +1,5 @@
 import {
-  getButtonText, getInputName, successNotification, randomName, gridFilter, filterColumn, search, buttonIconWrap, closeNotofic, secondInList, body_viewport
+  getButtonText, getInputName, successNotification, randomName, gridFilter, filterColumn, search, buttonIconWrap, closeNotofic, secondInList, body_viewport, MuiLinearProgress
 } from "../constants/elementSiteConst";
 
 
@@ -14,6 +14,10 @@ describe('CRUD Торговых Точек', () => {
   });
   
   it('Создание Торговой Точки', () => {
+    cy.get(MuiLinearProgress).should('not.visible');
+    cy.get(MuiLinearProgress).should('be.visible');
+    cy.get(getButtonText).contains('Создать').should('be.visible');
+
     cy.get(getButtonText).contains('Создать').click();
     cy.get(getInputName('ttName')).type(randomName);
     cy.get(getInputName('channelSaleId')).click();
@@ -23,6 +27,8 @@ describe('CRUD Торговых Точек', () => {
     cy.get(closeNotofic).click();
 });
 it('Редактирование Торговой Точки', () => {
+  cy.get(MuiLinearProgress).should('not.visible');
+
     cy.get(gridFilter).first().click();
     cy.get(filterColumn).eq(6).click();
     cy.get(search).first().type(randomName).wait(1000);
@@ -35,7 +41,7 @@ it('Редактирование Торговой Точки', () => {
   it('Удаление Торговой Точки', () => {
     cy.get(buttonIconWrap).eq(1).click().wait(500);;
     cy.get(getButtonText).contains('Удалить').click().wait(500);
-    cy.get(getButtonText).contains('Да').click();
+    cy.get(getButtonText).contains('Да').click().wait(500);;
     cy.get(successNotification).should('contain','Удалено успешно');
     cy.get(successNotification).contains('Удалено успешно').click();
   });
