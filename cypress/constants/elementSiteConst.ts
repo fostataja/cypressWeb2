@@ -17,10 +17,16 @@ export const input_description = `div[class *="input_description"]`
 export const input_clearButton = `div[class *="input_clearButton"]`
 // Таблица:
 export const body_viewport ='div[class *= "ag-body-viewport ag-layout-normal ag-row-animation"]'
+// Loader
+export const MuiLinearProgress ='div[class *= "MuiLinearProgress-bar"]'
 // Даилоговые окна
 export const dialog_actions  = `div[class*="dialog_actions"]`; 
 // Работа с Панельками (чипсы)
 export const chip_title = 'div[class *= "chip_title"]';
+// Рек ответы форматов вопросов
+export const switcherItem = `button[class *="switcher_item"]`
+
+
 
 
 
@@ -31,7 +37,7 @@ export const chip_title = 'div[class *= "chip_title"]';
 
 
 export const randomName = Date(); 
-export const randomNameTwo = 'new123'; 
+export const randomNameTwo = 'new_123'; 
 
 
 

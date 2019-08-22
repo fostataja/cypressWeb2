@@ -1,5 +1,5 @@
 import {
-  getButtonText, getInputName, successNotification, randomName, randomNameTwo, secondInList, dialog_actions, chip_title} from "../constants/elementSiteConst";
+  getButtonText, getInputName, randomName, dialog_actions, successNotification, chip_title, randomNameTwo, secondInList} from "../constants/elementSiteConst";
 ;
 
 
@@ -10,6 +10,10 @@ describe('CRUD Анкет', () => {
     cy.visit("/actions/quest");
 
   });
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('UserId.Token')
+  });
+  
 
   it('Создать анкету', () => {
     cy.title().should('eq','Действия: управление анкетами');
@@ -25,7 +29,7 @@ describe('CRUD Анкет', () => {
     cy.get(chip_title).contains(randomName).parents('div[class *= "chip_root"]').find('button[class *= "chip_button"]').first().click({ force: true });
     cy.get(getInputName('questionnaireName')).clear().type(randomNameTwo);
     cy.get(dialog_actions).find(getButtonText).contains('Сохранить').click();
-    cy.get(dialog_actions).find(getButtonText).contains('Нет').click();
+    cy.get(dialog_actions).find(getButtonText).contains('Да').click();
     cy.get(successNotification).should('contain','Сохранено успешно');
     cy.get(successNotification).contains('Сохранено успешно').click();
   });
@@ -43,7 +47,7 @@ describe('CRUD Анкет', () => {
   it('Создать анкету со всеми полями', () => {
     cy.get(getButtonText).contains('Создать').click();
     cy.get(getInputName('questionnaireName')).type(randomName);
-    cy.get(getInputName('typeId')).click()
+    cy.get(getInputName('typeId')).click({ force: true });
     cy.get(secondInList).click().wait(200);
     cy.get('#tasks').click({ force: true });
     cy.get('#reporting').click({ force: true });
@@ -52,7 +56,7 @@ describe('CRUD Анкет', () => {
     cy.get(secondInList).click().wait(200);
     cy.get(getInputName('manufacturerId')).click()
     cy.get(secondInList).eq(1).click().wait(200);
-    cy.get(getInputName('questFilter')).click()
+    cy.get(getInputName('questFilter')).click({ force: true });
     cy.get(secondInList).click().wait(200);
     cy.get('#loadPreviousAnswer').click({ force: true });
     cy.get(dialog_actions).find(getButtonText).contains('Создать').click();
@@ -60,6 +64,8 @@ describe('CRUD Анкет', () => {
     cy.get(successNotification).contains('Создано успешно').click();
   });
   it('Проверить анкету со всеми полями', () => {
+    cy.login2();
+    cy.visit("/actions/quest");
     cy.get(chip_title).contains(randomName).parents('div[class *= "chip_root"]').find('button[class *= "chip_button"]').first().click({ force: true });
     cy.get(getInputName('questionnaireName')).invoke('attr', 'value').should('eq',randomName);
     cy.get(getInputName('typeId')).invoke('attr', 'value').should('eq','Ассортиментная матрица');
@@ -67,7 +73,7 @@ describe('CRUD Анкет', () => {
     cy.get('#reporting').invoke('attr', 'aria-checked').should('eq','true');
     cy.get('#results').invoke('attr', 'aria-checked').should('eq','true');
     cy.get('div[class *= "dropdownMultiple_chipList"]').find(chip_title).invoke('attr', 'title').should('eq','Неплановый визит');
-    cy.get(getInputName('manufacturerId')).invoke('attr', 'value').should('eq','Белый медведь');
+    cy.get(getInputName('manufacturerId')).invoke('attr', 'value').should('eq','0Белый медведь');
     cy.get(getInputName('questFilter')).invoke('attr', 'value').should('eq','Только обязательные');
     cy.get('#loadPreviousAnswer').invoke('attr', 'aria-checked').should('eq','true');
     cy.get(dialog_actions).find(getButtonText).contains('Отмена').click();

@@ -12,6 +12,9 @@ describe('Создание поручений', () => {
     cy.visit("");
 
   });
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('UserId.Token')
+  });
 
   it('Создать поручение', () => {
     cy.get(createAssignmnetButton).click();
@@ -19,7 +22,7 @@ describe('Создание поручений', () => {
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('contain','Поручение успешно созданно');
+    cy.get(successNotification).should('contain','Поручение успешно создано');
 
     // cy.get(closeNotofic).click();
   });
@@ -28,16 +31,16 @@ describe('Создание поручений', () => {
     cy.get(createAssignmnetButton).click();
     cy.get(titleInput).type('Cypress Assignment');
     cy.get(descriptionInput).type('Cypress Description');
-    cy.get(webRoleInput).click();
+    cy.get(webRoleInput).click({ force: true });
     cy.get(secondInList).click();
     cy.get(tradepointInput).click();
     cy.get(secondInList).click();
     cy.get(submit).click();
-    cy.get(successNotification).should('contain','Поручение успешно созданно');
+    cy.get(successNotification).should('contain','Поручение успешно создано');
     cy.get(closeNotofic).click();
     });
   it('Поручение без заполнения полей', () => {
-    cy.get(createAssignmnetButton).click();
+    cy.get(createAssignmnetButton).click().wait(200);;
     cy.get(submit).click();
     cy.get(spanErrorSelector(titleInput)).should('contain','Поле обязательно для заполнения');
     cy.get(spanErrorSelector(tradepointInput)).should('contain','Поле обязательно для заполнения');

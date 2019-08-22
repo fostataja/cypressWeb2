@@ -9,10 +9,15 @@ describe('CRUD Товаров', () => {
     cy.login2();
     cy.visit("/directories/goods");
   });
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('UserId.Token')
+  });
+  
 
   it('Создать товар', () => {
     cy.get(getButtonText).contains('Создать').click();
     cy.get(getInputName('productName')).type(randomName);
+    cy.get(getInputName('extId')).type(randomName);
     cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Создать').click();
     cy.get(successNotification).should('contain','Создано успешно');
     cy.get(closeNotofic).click();
@@ -21,9 +26,9 @@ describe('CRUD Товаров', () => {
   it('Редактировать товар', () => {
   cy.get(gridFilter).first().click();
   cy.get(filterColumn).eq(6).click();
-  cy.get(search).type(randomName).wait(200);
+  cy.get(search).first().type(randomName).wait(200);
   cy.get(body_viewport).contains(randomName).parents(body_viewport).find(buttonIconWrap).eq(0).click();
-  cy.get(getInputName('extId')).type(randomNameTwo);
+  cy.get(getInputName('extId')).clear().type(randomName + randomNameTwo);
   cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Сохранить').click();
   cy.get(successNotification).should('contain','Сохранено успешно');
   cy.get(closeNotofic).click();
@@ -80,9 +85,32 @@ it('Удалить товар', () => {
     cy.get(secondInList).click().wait(200);
     cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Создать').click();
     cy.get('div[class *= "input_description"]').should('contain','Поле обязательно для заполнения');
+    cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Отмена').click();
+
   });
    
+  it('Создать товар с одинаковым  ean', () => {
+    cy.get(getButtonText).contains('Создать').click()
+    cy.get(getInputName('productName')).type(randomName);
+    cy.get(getInputName('ean')).type(randomName);
+    cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Создать').click();
+    cy.get('div[class *= "input_description"]').should('contain','Не уникально');
+    cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Отмена').click();
+  });
 
+  it('Обновить товар с одинаковым  ean', () => {
+    cy.get(getButtonText).contains('Создать').click()
+    cy.get(getInputName('productName')).type(randomName);
+    cy.get(getInputName('ean')).type(randomName + randomNameTwo);
+    cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Создать').click();
+    cy.get(successNotification).should('contain','Создано успешно');
+    cy.get(closeNotofic).click();
+    cy.get(getButtonText).contains('Создать').click()
+    cy.get(getInputName('productName')).type(randomName);
+    cy.get(getInputName('ean')).type(randomName + randomNameTwo);
+    cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Создать').click();
+    cy.get('div[class *= "input_description"]').should('contain','Не уникально');
+  });
 
 });
 

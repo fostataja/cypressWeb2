@@ -6,8 +6,13 @@ cy.visit(u0Url)
 });
 
 it('Логин позитивный', () => {
- cy.get('input[name="email"]').type(u0Login);
- cy.get('input[name="password"]').type(u0Pswrd);
+  cy.url().should('include','/anon/login');
+ cy.get('input[name="login"]').type(u0Login)
+ .should('have.value','u0ba2@mail.ru');
+
+ cy.get('input[name="password"]').type(u0Pswrd)
+ .should('have.value','testPass');
+
  cy.get('span[class*="button_text"]').contains('Войти').click();
  cy.title().should('eq','Главная');
 
