@@ -29,7 +29,7 @@ describe('CRUD Торговых Точек', () => {
 it('Редактирование Торговой Точки', () => {
   cy.get(MuiLinearProgress).should('not.visible');
 
-    cy.get(gridFilter).first().click();
+    cy.get(gridFilter).eq(1).click();
     cy.get(filterColumn).eq(6).click();
     cy.get(search).first().type(randomName).wait(1000);
     cy.get(body_viewport).contains(randomName).parents(body_viewport).find(buttonIconWrap).eq(1).click();
