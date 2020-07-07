@@ -1,5 +1,5 @@
 import {
-  getButtonText, getInputName, successNotification, randomName, dialog_actions, chip_title, buttonIconWrap, secondInList, switcherItem, getDropdownListName} from "../constants/elementSiteConst";
+  getButtonText, getInputName, successNotification, randomName, dialog_actions, chip_title, buttonIconWrap, secondInList, switcherItem, getDropdownListName, MuiLinearProgress} from "../constants/elementSiteConst";
 ;
 
 
@@ -39,6 +39,9 @@ describe('CRUD Вопросов', () => {
     cy.title().should('eq','Действия: управление анкетами');
     cy.get(chip_title).contains('Autotests QH').first().click()
     cy.get(getButtonText).contains('Показать вопросы').click().wait(400);
+    cy.get(MuiLinearProgress).should('be.visible');
+    cy.get(MuiLinearProgress).should('not.visible');
+
     cy.get(getButtonText).contains('Создать Вопрос').click();
     cy.get(getInputName('questionName')).type(randomName);
     cy.get(getInputName('questCategoryId')).click();

@@ -26,7 +26,7 @@ describe('CRUD Товаров', () => {
   it('Редактировать товар', () => {
   cy.get(gridFilter).first().click();
   cy.get(filterColumn).eq(6).click();
-  cy.get(search).first().type(randomName).wait(200);
+  cy.get(search).first().type(randomName).wait(500);
   cy.get(body_viewport).contains(randomName).parents(body_viewport).find(buttonIconWrap).eq(0).click();
   cy.get(getInputName('extId')).clear().type(randomName + randomNameTwo);
   cy.get('div[class *= "dialog_actions"]').find(getButtonText).contains('Сохранить').click();
